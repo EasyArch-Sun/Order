@@ -35,3 +35,6 @@ build/
 将删除 src/main/java/com/example/controller/
 将删除 src/main/resources/static/
 将删除 src/main/resources/templates/
+
+mvnw.cmd
+.mvn

@@ -1,6 +1,6 @@
 package com.example.dao;
 
-import com.example.entity.Good;
+import com.example.entity.OrderList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -10,28 +10,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Repository
-public class GoodDao {
+public class OrderListDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public Good findById(int id){
+    public OrderList findById(int id){
 
-        final Good good=new Good();
+        final OrderList orderList=new OrderList();
 
-        String sql="select id,name,price from order_good where id=?";
+        String sql="select userId, goodId from order_orderlist where userId=?";
         jdbcTemplate.query(sql, new Object[]{id}, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
-                good.setId(resultSet.getInt(1));
-                good.setName(resultSet.getString(2));
-                good.setPrice(resultSet.getString(3));
+                orderList.setGoodId(resultSet.getInt(1));
+                orderList.setUserId(resultSet.getInt(2));
             }
         });
 
 
 
-        return good;
+        return orderList;
     }
 
 }

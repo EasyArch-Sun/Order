@@ -35,8 +35,14 @@ public class UserDao {
     public User findByName(String name){
 
         final User user=new User();
-
-
+        String sql = "SELECT id,name FROM order_user WHERE name=?";
+        jdbcTemplate.query(sql, new Object[]{name}, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                user.setId(resultSet.getInt(1));
+                user.setName(resultSet.getString(2));
+            }
+        });
 
         return user;
     }
