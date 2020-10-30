@@ -2,6 +2,7 @@ package com.example.dao;
 
 import com.example.entity.Good;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Repository
+@CacheConfig(cacheNames = "good")
 public class GoodDao {
 
     @Autowired
